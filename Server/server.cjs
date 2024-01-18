@@ -21,11 +21,7 @@ const Role = db.role;
 mongoose.set('strictQuery', false)
 
 db.mongoose
-.connect(`mongodb+srv://KamalGuidadou:eDAds7gRkZJzBzBl@cluster0.7o1fsht.mongodb.net/Sante_Connect_JS_Figma?retryWrites=true&w=majority`, 
-{
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+.connect(`mongodb+srv://KamalGuidadou:eDAds7gRkZJzBzBl@cluster0.7o1fsht.mongodb.net/Sante_Connect_JS_Figma?retryWrites=true&w=majority`)
 .then(() => {
   console.log("Successfully connect to MongoDB.");
   initial();
