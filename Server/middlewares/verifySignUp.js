@@ -1,6 +1,5 @@
 const db = require("../models");
 const User = db.user;
-const ROLES = db.ROLES;
 
 checkDuplicateUsernameOrEmail = async (req, res, next) => {
   try {
@@ -20,24 +19,8 @@ checkDuplicateUsernameOrEmail = async (req, res, next) => {
   }
 };
 
-checkRolesExisted = (req, res, next) => {
-  if (req.body.role) {
-    for (let i = 0; i < req.body.role.length; i++) {
-      if (!ROLES.includes(req.body.role[i])) {
-        console.log(message)
-        return Promise.reject({
-          status: 400,
-          message: `Erreur! Le statut de ${req.body.role[i]} n'existe pas!`
-        });
-      }
-    }
-  }
-  return Promise.resolve();
-};
-
 const verifySignUp = {
     checkDuplicateUsernameOrEmail,
-    checkRolesExisted
   };
   
 module.exports = verifySignUp;

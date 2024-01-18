@@ -38,13 +38,6 @@ const UserSchema = new mongoose.Schema({
     country: {
       type: String,
   },
-
-    role: [
-      {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "roles"
-    }
-  ],
 });
 
 

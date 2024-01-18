@@ -25,8 +25,8 @@ class AuthService {
                    email, 
                    password,
                    age,
-                   country,
-                   role) {
+                   country
+                   ) {
         try { 
           await axios
             .post(API_URL + "register", {
@@ -34,8 +34,7 @@ class AuthService {
               email,
               password,
               age,
-              country,
-              role
+              country
           });
       } catch (error) {
         console.error(error);

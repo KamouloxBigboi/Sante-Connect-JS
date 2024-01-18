@@ -16,25 +16,4 @@ module.exports = function(app) {
     function(req, res) {
       res.send(controller.allAccess);
   });
-
-  app.get("/api/content/user", 
-    [authJwt.verifyToken], 
-    function(req, res) {
-      res.send(controller.userBoard);
-  });
-
-  app.get("/api/content/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-    function(req, res) {
-      res.send(controller.moderatorBoard);
-    }
-  );
-
-  app.get(
-    "/api/content/admin",
-    [authJwt.verifyToken, authJwt.isAdmin],
-    function(req, res) {
-      res.send(controller.adminBoard);
-    }
-  );
 };

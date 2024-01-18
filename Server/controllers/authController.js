@@ -1,7 +1,6 @@
 const config = require("../config/authConfig");
 const db = require("../models");
 const User = db.user;
-const Role = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -11,8 +10,7 @@ module.exports.register = (req, res) => {
                          email: req.body.email,
                          password: bcrypt.hashSync(req.body.password, 8),
                          age: req.body.age,
-                         country: req.body.country,
-                         role: req.body.role
+                         country: req.body.country
   });
   console.log(req.body)
 
@@ -25,28 +23,6 @@ module.exports.register = (req, res) => {
   });
 
     if (req.body.role) {
-      Role.find(
-        {
-          name: { $in: req.body.role }
-        },
-        (err, roles) => {
-          if (err) {
-            res.status(500).send({ message: err });
-            return;
-          }
-
-          user.role = roles.map(role => role._id);
-          user.save(err => {
-            if (err) {
-              res.status(500).send({ message: err });
-              return;
-            }
-
-            res.send({ message: "L''utilisateur a été enregistré avec succès!" });
-          });
-        }
-      );
-    } else {
       Role.findOne({ name: "user" }, (err, role) => {
         if (err) {
           res.status(500).send({ message: err });
@@ -92,7 +68,6 @@ module.exports.login = (req, res) => {
         id: user._id,
         username: user.username,
         email: user.email,
-        role: authorities,
         accessToken: token
       });
     })

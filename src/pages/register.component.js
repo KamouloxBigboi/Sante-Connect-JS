@@ -83,7 +83,6 @@ export default class Register extends Component {
     this.onChangeCPassword = this.onChangeCPassword.bind(this);
     this.onChangeAge = this.onChangeAge.bind(this);
     this.onChangeCountry = this.onChangeCountry.bind(this);
-    this.onChangeRoles = this.onChangeRoles.bind(this);
 
     this.state = {
       username: "",
@@ -92,7 +91,6 @@ export default class Register extends Component {
       cpassword: "",
       age: 15,
       country: "",
-      roles: [],
       successful: false,
       message: "",
       errors: {}
@@ -135,12 +133,6 @@ export default class Register extends Component {
     });
   }
 
-  onChangeRoles(event) {
-    this.setState({
-      roles: event.target.roles
-    });
-  }
-
   handleRegister = (event) => {
     event.preventDefault();
     this.setState({
@@ -155,8 +147,7 @@ export default class Register extends Component {
       email: this.state.email,
       password: this.state.password,
       age: this.state.age,
-      country: this.state.country,
-      roles: this.state.roles
+      country: this.state.country
     });
 
     if (this.checkBtn.context._errors.length === 0) {
@@ -166,8 +157,7 @@ export default class Register extends Component {
         this.state.email,
         this.state.password,
         this.state.age,
-        this.state.country,
-        this.state.roles
+        this.state.country
       ).then(
         response => {
           this.setState({
